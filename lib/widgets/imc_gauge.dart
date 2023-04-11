@@ -4,7 +4,10 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'imc_gauge_range.dart';
 
 class ImcGauge extends StatelessWidget {
-  const ImcGauge({Key? key}) : super(key: key);
+
+  final double imc;
+
+  const ImcGauge({Key? key, required this.imc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +47,9 @@ class ImcGauge extends StatelessWidget {
               label: 'Obesidade II (grave)',
             ),
           ],
-          pointers: const [
+          pointers: [
             NeedlePointer(
-              value: 15,
+              value: imc,
               enableAnimation: true,
             )
           ],
