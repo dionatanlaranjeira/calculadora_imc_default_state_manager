@@ -1,5 +1,5 @@
 import 'package:calculadora_imc_default_state_manager/setState/imc_setstate_page.dart';
-import 'package:calculadora_imc_default_state_manager/value_notifier/template.dart';
+import 'package:calculadora_imc_default_state_manager/value_notifier/value_notifier_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
