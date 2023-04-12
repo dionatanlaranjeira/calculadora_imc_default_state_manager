@@ -7,30 +7,25 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-class ImcSetstatePage extends StatefulWidget {
-  const ImcSetstatePage({Key? key}) : super(key: key);
+class ValueNotifierPage extends StatefulWidget {
+  const ValueNotifierPage({Key? key}) : super(key: key);
 
   @override
-  State<ImcSetstatePage> createState() => _ImcSetstatePageState();
+  State<ValueNotifierPage> createState() => _ValueNotifierPageState();
 }
 
-class _ImcSetstatePageState extends State<ImcSetstatePage> {
+class _ValueNotifierPageState extends State<ValueNotifierPage> {
   final formKey = GlobalKey<FormState>();
   final pesoEC = TextEditingController();
   final alturaEC = TextEditingController();
-  var imc = 0.0;
+  var imc = ValueNotifier(0.0);
 
   Future<void> _calcularIMC(
       {required double peso, required double altura}) async {
-    setState(() {
-      imc = 0;
-    });
+    imc.value = 0;
 
-    await Future.delayed(Duration(seconds: 1));
-
-    setState(() {
-      imc = peso / pow(altura, 2);
-    });
+    await Future.delayed(const Duration(seconds: 1));
+    imc.value = peso / pow(altura, 2);
   }
 
   @override
@@ -44,7 +39,7 @@ class _ImcSetstatePageState extends State<ImcSetstatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Imc Setstate'),
+        title: const Text('Value Notifier'),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -53,8 +48,17 @@ class _ImcSetstatePageState extends State<ImcSetstatePage> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                ImcGauge(imc: imc),
-                Text('Seu IMC: ${imc.toStringAsFixed(2)}'),
+                ValueListenableBuilder<double>(
+                  valueListenable: imc,
+                  builder: (
+                    _,
+                    imcValue,
+                    __,
+                  ) {
+                    return ImcGauge(imc: imcValue);
+                  },
+                ),
+                // Text('Seu IMC: ${imc.toStringAsFixed(2)}'),
                 const SizedBox(
                   height: 20,
                 ),

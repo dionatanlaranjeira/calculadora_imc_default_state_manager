@@ -20,7 +20,14 @@ class _ImcSetstatePageState extends State<ImcSetstatePage> {
   final alturaEC = TextEditingController();
   var imc = 0.0;
 
-  void _calcularIMC({required double peso, required double altura}) {
+  Future<void> _calcularIMC(
+      {required double peso, required double altura}) async {
+    setState(() {
+      imc = 0;
+    });
+
+    await Future.delayed(const Duration(seconds: 1));
+
     setState(() {
       imc = peso / pow(altura, 2);
     });
