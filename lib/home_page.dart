@@ -1,3 +1,4 @@
+import 'package:calculadora_imc_default_state_manager/bloc_pattern/imc_bloc_pattern_page.dart';
 import 'package:calculadora_imc_default_state_manager/change_notifier/change_notifier_page.dart';
 import 'package:calculadora_imc_default_state_manager/setState/imc_setstate_page.dart';
 import 'package:calculadora_imc_default_state_manager/value_notifier/value_notifier_page.dart';
@@ -34,7 +35,8 @@ class HomePage extends StatelessWidget {
                 onPressed: () => _goToPage(context, const ChangeNotifierPage()),
                 child: const Text('ChangeNotifier')),
             ElevatedButton(
-                onPressed: () {}, child: const Text('Bloc pattern (streams)')),
+                onPressed: () => _goToPage(context, const ImcBlocPatternPage()),
+                child: const Text('Bloc pattern (streams)')),
           ],
         ),
       ),
